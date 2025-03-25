@@ -1,0 +1,21 @@
+services:
+  # Flask main backend service
+  - type: web
+    name: voice-analysis-api
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn --bind 0.0.0.0:$PORT app:app
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.10.0
+      - key: PORT
+        value: 8080
+    healthCheckPath: /health
+    autoDeploy: true
+    plan: free
+
+    # Ensure plots, reports, and temp directories are persistent
+    disk:
+      name: data-disk
+      mountPath: /data
+      sizeGB: 10 

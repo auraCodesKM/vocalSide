@@ -1,0 +1,20 @@
+[build]
+builder = "nixpacks"
+buildCommand = "pip install -r requirements.txt"
+
+[deploy]
+startCommand = "gunicorn app:app"
+healthcheckPath = "/health"
+healthcheckTimeout = 100
+
+[volumes]
+source = "voice_analysis_data"
+destination = "/app/data"
+
+[[mounts]]
+source = "voice_analysis_reports"
+destination = "/app/reports"
+
+[[mounts]]
+source = "voice_analysis_plots"
+destination = "/app/plots" 
