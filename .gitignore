@@ -72,6 +72,10 @@ frontend/.next/
 /backend/reports/
 /backend/temp/
 
+# Frontend specific
+/frontend/tmp/
+frontend/tmp/
+
 # Large files
 *.pack
 *.pack.old
